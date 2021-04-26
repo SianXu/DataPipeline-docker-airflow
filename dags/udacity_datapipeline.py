@@ -3,7 +3,12 @@ import os
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators import (StageToRedshiftOperator, LoadFactOperator,
-                                LoadDimensionOperator, DataQualityOperator)
+                               LoadDimensionOperator, DataQualityOperator)
+# from airflow.operators import StageToRedshiftOperator
+# from airflow.operators import LoadFactOperator
+# from airflow.operators import LoadDimensionOperator
+# from airflow.operators import DataQualityOperator
+
 from helpers import SqlQueries
 
 from airflow.contrib.hooks.aws_hook import AwsHook
@@ -13,7 +18,7 @@ from airflow.hooks.postgres_hook import PostgresHook
 # AWS_SECRET = os.environ.get('AWS_SECRET')
 
 default_args = {
-    'owner': 'udacity',
+    'owner': 'Sian Xu',
     'start_date': datetime(2019, 1, 12),
     #according to guidelines
     'depends_on_past': False, #The DAG does not have dependencies on past runs
@@ -23,7 +28,7 @@ default_args = {
     'email_on_retry': False, #do not email on retries
 }
 
-dag = DAG('udac_example_dag',
+dag = DAG('udac_data_pipeline_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
           schedule_interval='0 * * * *'
