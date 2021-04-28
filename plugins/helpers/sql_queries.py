@@ -96,7 +96,7 @@ class SqlQueries:
             sessionid int4,
             song varchar(256),
             status int4,
-            ts int8,
+            ts timestamp,
             useragent varchar(256),
             userid int4
         )
